@@ -1,5 +1,10 @@
-with open("./data") as f:
-    line = f.read()
+import sys, os
+sys.path.append(os.path.abspath(__file__ + "/../../../common"))
+
+from Loader import get_data
+
+data = get_data(2022, 6)
+line = data.strip()
 
 
 def run1():

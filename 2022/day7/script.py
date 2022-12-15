@@ -2,9 +2,13 @@ from collections import OrderedDict
 import operator
 from typing import Type
 
+import sys, os
+sys.path.append(os.path.abspath(__file__ + "/../../../common"))
 
-with open("./2022/day7/data") as f:
-    lines = f.read().split("\n")
+from Loader import get_data
+
+data = get_data(2022, 7)
+lines = data.strip().split("\n")
 
 class File:
     def __init__(self, name, size):

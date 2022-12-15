@@ -1,5 +1,10 @@
-with open("./data") as f:
-    lines = f.read().split("\n")
+import sys, os
+sys.path.append(os.path.abspath(__file__ + "/../../../common"))
+
+from Loader import get_data
+
+data = get_data(2022, 5)
+lines = data.split("\n")
 
 
 def purpose_data():
@@ -19,7 +24,7 @@ def purpose_data():
             if line[index] != " ":
                 crates[-1].append(line[index])
     moves = lines[split_index + 1:]
-    moves = [move.split(" ") for move in moves]
+    moves = [move.split(" ") for move in moves if move != '']
     moves = [(int(amount), int(from_stack)-1, int(to_stack)-1) for _, amount, _, from_stack, _, to_stack in moves]
     return crates, moves
 

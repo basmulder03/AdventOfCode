@@ -1,5 +1,10 @@
-with open("./data") as f:
-    lines = f.read().split("\n")
+import sys, os
+sys.path.append(os.path.abspath(__file__ + "/../../../common"))
+
+from Loader import get_data
+
+data = get_data(2022, 3)
+lines = data.strip().split("\n")
 
 
 priorities = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"

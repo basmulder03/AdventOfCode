@@ -1,7 +1,4 @@
-import sys, os
-sys.path.append(os.path.abspath(__file__ + "/../../../common"))
-
-from Loader import get_data
+from common.Loader import get_data
 
 data = get_data(2022, 5)
 lines = data.split("\n")

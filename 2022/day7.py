@@ -1,11 +1,5 @@
-from collections import OrderedDict
 import operator
-from typing import Type
-
-import sys, os
-sys.path.append(os.path.abspath(__file__ + "/../../../common"))
-
-from Loader import get_data
+from common.Loader import get_data
 
 data = get_data(2022, 7)
 lines = data.strip().split("\n")
@@ -94,7 +88,7 @@ def parse():
 
 def run1():
     root = parse()
-    root.print_tree()
+    # root.print_tree()
     Folder.all_sizes = []
     print("total size: " + str(root.calculate_size()))
     print(sum([size for size in Folder.all_sizes if size <= 100_000]))

@@ -1,0 +1,4 @@
+{
+  "python.analysis.extraPaths": ["./common"],
+  "python.analysis.typeCheckingMode": "basic"
+}

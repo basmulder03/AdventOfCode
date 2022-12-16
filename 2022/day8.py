@@ -23,7 +23,7 @@ def run1():
             if forest[y][len(forest[y]) - x - 1] > highest_from_right:
                 visible[y][len(forest[y]) - x - 1] = True
                 highest_from_right = forest[y][len(forest[y]) - x - 1]
-    for x in range(len(forest[y])):
+    for x in range(len(forest[0])):
         highest_from_top = -1
         highest_from_bottom = -1
         for y in range(len(forest)):
@@ -78,10 +78,22 @@ def run2():
                         y2 = False
                 score = up * down * left * right
                 if score > highscore[0]:
-                    highscore = (score, x1, x2, y1, y2)
+                    highscore = (score, up, down, left, right)
                     highscore_coors = (x, y)
-    [print(''.join([Color.BOLD + Color.GREEN + str(forest[y][x]) + Color.END if x == highscore_coors[0] and y == highscore_coors[1] else Color.GREEN + str(forest[y][x]) + Color.END if (x == highscore_coors[0] and y < highscore_coors[1] and y > highscore_coors[1] - highscore[3]) or (x == highscore_coors[0] and y > highscore_coors[1] and y <
-           highscore_coors[1] + highscore[4]) or (y == highscore_coors[1] and x > highscore_coors[0] and x < highscore_coors[0] + highscore[1]) or (y == highscore_coors[1] and x < highscore_coors[0] and x > highscore_coors[0] - highscore[2]) else Color.RED + str(forest[y][x]) + Color.END for x in range(len(forest[y]))])) for y in range(len(forest))]
+    score, up, down, left, right = highscore
+    # xcoor, ycoor = highscore_coors
+    # [print(''.join([
+    #     Color.BOLD + Color.UNDERLINE + Color.PURPLE +
+    #     str(forest[y][x]) + Color.END
+    #     if x == xcoor and y == ycoor
+    #     else Color.GREEN + str(forest[y][x]) + Color.END
+    #     if (x == xcoor and y > ycoor and y <= ycoor + down) or
+    #     (x == xcoor and y < ycoor and y >= ycoor - up) or
+    #     (y == ycoor and x > xcoor and x <= xcoor + right) or
+    #     (y == ycoor and x < xcoor and x >= xcoor - left)
+    #     else Color.RED + str(forest[y][x]) + Color.END
+    #     for x in range(len(forest[y]))]))
+    #     for y in range(len(forest))]
     print(highscore[0])
 
 

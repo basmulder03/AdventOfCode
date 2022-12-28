@@ -13,6 +13,12 @@ class Direction(Enum):
     UPLEFT = 8
 
 
+class DirectionException(Exception):
+    def __init__(self, message: str = "This direction is not allowed, you are only allowed the directions: {}", allowed_directions: list[Direction] = []):
+        self.message = message.format(', '.join(allowed_directions))
+        super().__init__(self.message)
+
+
 class Coor:
     def __init__(self, x, y):
         self.x = x

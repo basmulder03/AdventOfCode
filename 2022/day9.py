@@ -31,6 +31,10 @@ directions = {
 }
 
 
+def print_grid(all_visited_coors):
+    pass
+
+
 def coor_is_close(head: Coor, tail: Coor):
     tail_is_close = False
     for new_coor in directions.values():
@@ -47,6 +51,10 @@ def part1(data):
     current_head_coors = Coor(0, 0)
     current_tail_coors = Coor(0, 0)
 
+    all_visited = set()
+    all_visited.add(current_head_coors)
+    all_visited.add(current_tail_coors)
+
     visited.add(current_tail_coors)
 
     for direction, amount in actions:
@@ -60,11 +68,15 @@ def part1(data):
             elif direction == 'L':
                 current_head_coors.go_left()
 
+            all_visited.add(current_head_coors)
+
             if not coor_is_close(current_head_coors, current_tail_coors):
                 direction_to_move = current_tail_coors.get_direction(
                     current_head_coors)
                 visited.add(current_tail_coors.move_coor(
                     directions[direction_to_move]))
+
+            all_visited.add(current_tail_coors)
 
     print(len(visited))
 

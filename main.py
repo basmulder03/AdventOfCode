@@ -2,6 +2,8 @@ import argparse
 import importlib
 import importlib.util
 import time
+import os
+from input import get_input
 
 
 def main():
@@ -13,7 +15,7 @@ def main():
 
     # Create a module spec for the specified year and day
     module_name = f"{args.year}/day{args.day}"
-    module_path = f"/path/to/{module_name}.py"
+    module_path = os.path.join(os.getcwd(), f"{module_name}.py")
     module_spec = importlib.util.spec_from_file_location(
         module_name, module_path)
 

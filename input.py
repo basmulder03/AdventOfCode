@@ -3,7 +3,7 @@ import requests
 
 
 def get_input(year: int, day: int) -> str:
-    filename = f"input/{year}/{day}.txt"
+    filename = f"input/{year}/day{day}.txt"
     cookie_filename = "session_cookie.txt"
     if os.path.exists(filename):
         # Read the input data from the file
@@ -16,6 +16,8 @@ def get_input(year: int, day: int) -> str:
                 session_cookie = f.read()
         else:
             session_cookie = input("Please enter your session cookie: ")
+            with open(cookie_filename, "w+") as f:
+                f.write(session_cookie)
 
         # Create a session and authenticate with the AOC website
         session = requests.Session()
@@ -34,13 +36,21 @@ def get_input(year: int, day: int) -> str:
             response = session.get(
                 f"https://adventofcode.com/{year}/day/{day}/input")
             # Save the new cookie to the file
-            with open(cookie_filename, "w") as f:
+            with open(cookie_filename, "w+") as f:
                 f.write(new_cookie)
         response.raise_for_status()
         input_data = response.text
 
+        current_dir = os.getcwd()
+        for dir in filename.split("/")[:-1]:
+            print(dir, current_dir)
+
+            if not dir in os.listdir(current_dir):
+                os.makedirs(os.path.join(current_dir, dir))
+            current_dir = os.path.join(current_dir, dir)
+
         # Write the input data to the file
-        with open(filename, "w") as f:
+        with open(filename, "w+") as f:
             f.write(input_data)
 
         return input_data

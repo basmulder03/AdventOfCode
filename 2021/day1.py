@@ -1,3 +1,5 @@
+# advent of code 2021 day 1
+
 def solve_part_1(input_data: str) -> int:
     # Parse the input data
     measurements = [int(x) for x in input_data.strip().split('\n')]
@@ -14,16 +16,14 @@ def solve_part_1(input_data: str) -> int:
 
 
 def solve_part_2(input_data: str) -> int:
-    # Parse the input data
     measurements = [int(x) for x in input_data.strip().split('\n')]
 
-    # Count the number of times the sum of a three-measurement window is larger than the previous sum
-    count = 0
-    prev = 0
+    # Consider sums of a three-measurement sliding window
+    sum_count = 0
     for i in range(2, len(measurements)):
-        window_sum = sum(measurements[i-2:i+1])
-        if window_sum > prev:
-            count += 1
-        prev = window_sum
+        cur_sum = measurements[i-2] + measurements[i-1] + measurements[i]
+        prev_sum = measurements[i-3] + measurements[i-2] + measurements[i-1]
+        if cur_sum > prev_sum:
+            sum_count += 1
 
-    return count
+    return sum_count

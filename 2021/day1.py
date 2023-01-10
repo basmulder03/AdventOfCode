@@ -3,27 +3,15 @@
 def solve_part_1(input_data: str) -> int:
     # Parse the input data
     measurements = [int(x) for x in input_data.strip().split('\n')]
-
     # Count the number of times a depth measurement increases from the previous measurement
-    count = 0
-    prev = measurements[0]
-    for measurement in measurements[1:]:
-        if measurement > prev:
-            count += 1
-        prev = measurement
-
+    count = sum([1 for measurement, prev in zip(
+        measurements[1:], measurements[:-1]) if measurement > prev])
     return count
 
 
 def solve_part_2(input_data: str) -> int:
     measurements = [int(x) for x in input_data.strip().split('\n')]
-
     # Consider sums of a three-measurement sliding window
-    sum_count = 0
-    for i in range(2, len(measurements)):
-        cur_sum = measurements[i-2] + measurements[i-1] + measurements[i]
-        prev_sum = measurements[i-3] + measurements[i-2] + measurements[i-1]
-        if cur_sum > prev_sum:
-            sum_count += 1
-
+    sum_count = sum([1 for a, b, c, d in zip(measurements[3:], measurements[2:-1],
+                    measurements[1:-2], measurements[:-3]) if a+b+c > d+c+b])
     return sum_count

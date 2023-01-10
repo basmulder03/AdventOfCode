@@ -47,8 +47,8 @@ def main():
         # Print the result and elapsed time for Part 1
         print(f"Part 1: {result_1}")
         print(f"Elapsed time: {elapsed_time:.2f} seconds")
-    except:
-        pass
+    except Exception as e:
+        print(e)
 
     try:
         # Measure the elapsed time for solving Part 2
@@ -60,8 +60,8 @@ def main():
         # Print the result and elapsed time for Part 2
         print(f"Part 2: {result_2}")
         print(f"Elapsed time: {elapsed_time:.2f} seconds")
-    except:
-        pass
+    except Exception as e:
+        print(e)
 
 
 if __name__ == "__main__":

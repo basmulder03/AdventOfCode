@@ -52,10 +52,11 @@ def main():
         print(e)
 
     try:
+        # Measure the elapsed time for solving Part 2
         start_time = datetime.now()
         result_2 = module.solve_part_2(input_data)
-        end_time = time.perf_counter()
-        elapsed_time = datetime.now()
+        end_time = datetime.now()
+        elapsed_time = end_time - start_time
 
         # Print the result and elapsed time for Part 2
         print(f"Part 2: {result_2}")

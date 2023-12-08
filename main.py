@@ -1,10 +1,9 @@
 import argparse
 import importlib
 import importlib.util
-import time
+from time import perf_counter
 import os
 from input import get_input
-from datetime import datetime
 
 
 def main():
@@ -37,32 +36,36 @@ def main():
 
     # Get the input data for the specified day
     input_data = get_input(args.year, args.day)
-
+    total_time = 0
     try:
         # Measure the elapsed time for solving Part 1
-        start_time = datetime.now()
+        start_time = perf_counter()
         result_1 = module.solve_part_1(input_data)
-        end_time = datetime.now()
+        end_time = perf_counter()
         elapsed_time = end_time - start_time
 
         # Print the result and elapsed time for Part 1
         print(f"Part 1: {result_1}")
         print(f"Elapsed time: {elapsed_time} seconds")
+        total_time += elapsed_time
     except Exception as e:
         print(e)
 
     try:
         # Measure the elapsed time for solving Part 2
-        start_time = datetime.now()
+        start_time = perf_counter()
         result_2 = module.solve_part_2(input_data)
-        end_time = datetime.now()
+        end_time = perf_counter()
         elapsed_time = end_time - start_time
 
         # Print the result and elapsed time for Part 2
         print(f"Part 2: {result_2}")
         print(f"Elapsed time: {elapsed_time} seconds")
+        total_time += elapsed_time
     except Exception as e:
         print(e)
+    
+    print(f"Total took {total_time * 1000} milliseconds")
 
 
 if __name__ == "__main__":
